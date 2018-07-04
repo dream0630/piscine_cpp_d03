@@ -1,68 +1,54 @@
 #include <iostream>
-#include <string>
 #include "KoalaBot.h"
-#include "Parts.h"
 
-KoalaBot::KoalaBot(std::string serial)
-{
-  this->serial = serial;
-}
-
-KoalaBot::~KoalaBot()
+KoalaBot::KoalaBot(std::string const& serial) :
+    _serial(serial)
 {
 }
 
-void	KoalaBot::setParts(Arms &arms)
+void KoalaBot::setParts(Arms const& arms)
 {
-  this->arms = arms;
+    _arms = arms;
 }
 
-void	KoalaBot::setParts(Legs &legs)
+void KoalaBot::setParts(Legs const& legs)
 {
-  this->legs = legs;
+    _legs = legs;
 }
 
-void	KoalaBot::setParts(Head &head)
+void KoalaBot::setParts(Head const& head)
 {
-  this->head = head;
+    _head = head;
 }
 
-void	KoalaBot::swapParts(Arms &arms)
+void KoalaBot::swapParts(Arms& arms)
 {
-  Arms	tmp;
-
-  tmp = this->arms;
-  this->arms = arms;
-  arms = tmp;
+    Arms temp = arms;
+    arms = _arms;
+    _arms = temp;
+}
+void KoalaBot::swapParts(Legs& legs)
+{
+    Legs temp = legs;
+    legs = _legs;
+    _legs = temp;
+}
+void KoalaBot::swapParts(Head& head)
+{
+    Head temp = head;
+    head = _head;
+    _head = temp;
 }
 
-void	KoalaBot::swapParts(Legs &legs)
+void KoalaBot::informations() const
 {
-  Legs	tmp;
-
-  legs = this->legs;
-  this->legs = legs;
-  legs = tmp;
+    std::cout << "[KoalaBot] " << _serial << std::endl;
+    _arms.informations();
+    _legs.informations();
+    _head.informations();
 }
 
-void	KoalaBot::swapParts(Head &head)
+bool KoalaBot::status() const
 {
-  Head	tmp;
-
-  tmp = this->head;
-  this->head = head;
-  head = tmp;
-}
-
-void	KoalaBot::informations() const
-{
-  std::cout << "[KoalaBot] " << this->serial << std::endl;
-  arms.informations();
-  legs.informations();
-  head.informations();
-}
-
-bool	KoalaBot::status() const
-{
-  return arms.isFunctionnal() && legs.isFunctionnal() && head.isFunctionnal();
+    return _arms.isFunctionnal() && _legs.isFunctionnal() && _head.isFunctionnal();
 }
