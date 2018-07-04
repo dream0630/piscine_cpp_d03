@@ -1,29 +1,27 @@
-#ifndef KOALABOT_H_
-#define KOALABOT_H_
+#ifndef KOALA_BOT_H
+# define KOALA_BOT_H
+# include "Parts.h"
+# include <string>
+class KoalaBot{
+ public:
+  KoalaBot(std::string serial = "Bob-01");
+  bool status() const;
+  void informations() const;
+  ~KoalaBot();
 
-#include <string>
-#include "Parts.h"
-
-class KoalaBot
-{
-public:
-    explicit KoalaBot(std::string const& serial = "Bob-01");
-    virtual ~KoalaBot() {}
-
-    void setParts(Arms const& arms);
-    void setParts(Legs const& legs);
-    void setParts(Head const& head);
-    void swapParts(Arms& arms);
-    void swapParts(Legs& legs);
-    void swapParts(Head& head);
-
-    void informations() const;
-    bool status() const;
-private:
-    std::string _serial;
-    Arms _arms;
-    Legs _legs;
-    Head _head;
+  void setParts(Arms &p);
+  void setParts(Legs &p);
+  void setParts(Head &p);
+  
+  void swapParts(Arms &p);
+  void swapParts(Legs &p);
+  void swapParts(Head &p);
+  
+ private:
+  Arms _arms;
+  Legs _legs;
+  Head _head;
+  std::string _serial;
 };
 
 #endif

@@ -1,62 +1,53 @@
 #include <iostream>
+#include "KoalaBot.h"
 #include "Parts.h"
-
-Arms::Arms(std::string const& serial, bool functionnal) :
-    _serial(serial), _functionnal(functionnal)
-{
+//
+Arms::Arms(std::string serial, bool f){
+  _serial = serial;
+  _func = f;
 }
 
-bool Arms::isFunctionnal() const
-{
-    return _functionnal;
+Arms::~Arms(){
+
 }
 
-std::string const& Arms::serial() const
-{
-    return _serial;
+void Arms::informations() const{
+  if (this->_func)
+    std::cout << "\t[Parts] Arms " << this->_serial << " status : OK" <<std::endl;
+  else
+    std::cout << "\t[Parts] Arms " << this->_serial << " status : KO" <<std::endl;
+}
+//
+Legs::Legs(std::string serial, bool f){
+  _serial = serial;
+  _func = f;
 }
 
-void Arms::informations() const
-{
-    std::cout << "\t[Parts] Arms " << _serial << " status : " << (_functionnal ? "OK" : "KO") << std::endl;
+Legs::~Legs(){
+
 }
 
-Legs::Legs(std::string const& serial, bool functionnal) :
-    _serial(serial), _functionnal(functionnal)
-{
+void Legs::informations() const{
+    if (this->_func)
+		std::cout << "\t[Parts] Legs " << this->_serial << " status : OK" <<std::endl;
+	else
+		std::cout << "\t[Parts] Legs " << this->_serial << " status : KO" <<std::endl;
 }
 
-bool Legs::isFunctionnal() const
-{
-    return _functionnal;
+//
+
+Head::Head(std::string serial, bool f){
+  _serial = serial;
+  _func = f;
 }
 
-std::string const& Legs::serial() const
-{
-    return _serial;
+Head::~Head(){
+
 }
 
-void Legs::informations() const
-{
-    std::cout << "\t[Parts] Legs " << _serial << " status : " << (_functionnal ? "OK" : "KO") << std::endl;
-}
-
-Head::Head(std::string const& serial, bool functionnal) :
-    _serial(serial), _functionnal(functionnal)
-{
-}
-
-bool Head::isFunctionnal() const
-{
-    return _functionnal;
-}
-
-std::string const& Head::serial() const
-{
-    return _serial;
-}
-
-void Head::informations() const
-{
-    std::cout << "\t[Parts] Head " << _serial << " status : " << (_functionnal ? "OK" : "KO") << std::endl;
+void Head::informations() const{
+  if (this->_func)
+    std::cout << "\t[Parts] Head " << this->_serial << " status : OK" <<std::endl;
+  else
+    std::cout << "\t[Parts] Head " << this->_serial << " status : KO" <<std::endl;
 }
