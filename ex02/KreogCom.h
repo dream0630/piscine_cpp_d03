@@ -1,25 +1,25 @@
-#ifndef _KREOGCOM_H_
-#define _KREOGCOM_H_
+#ifndef KREOGCOM_H_
+#define KREOGCOM_H_
 
+#include <string>
 #include <iostream>
-#include <cctype>
 
 class KreogCom
 {
+	int m_serial;
+	int my_x;
+	int my_y;
+	KreogCom	*next;
+
 	public:
-	KreogCom(int x, int y, int serial);
-	~KreogCom();
+		KreogCom(int x, int y, int serial);
+		~KreogCom();
+
 	void addCom(int x, int y, int serial);
-	KreogCom *getCom();
+	KreogCom	*getCom();
 	void removeCom();
 	void ping() const;
 	void locateSquad() const;
-
-	private:
-	int _x;
-	int _y;
-	KreogCom *next;
-	const int _serial;
 };
 
 #endif
